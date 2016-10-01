@@ -95,18 +95,29 @@ def send_vac(message):
     hr_bot.register_next_step_handler(msg, process_step)
 
 
+def process_step(message):
+    chat_id = message.chat.id
+    markup = types.ReplyKeyboardHide(selective=False)
+    response_text = ''
+    if message.text is "Дизайн":
+        response_text = "Strong risovat kartinki chtob mi takie AAAAAH VAI VAI VAI AYVAZOVSKY PRYAM!!!!"
+    elif message.text is "Разработка":
+        php = types.KeyboardButton('PHP')
+        js = types.KeyboardButton('JavaScript')
+        markup = types.ReplyKeyboardMarkup()
+        markup.row(php)
+        markup.row(js)
+        response_text = 'Выберите вакансию для получения описания вакансии:'
+    else:
+        pass
+    hr_bot.send_message(chat_id, response_text, reply_markup=markup)
+
+
 @hr_bot.message_handler(commands=['instagram'])
 def send_instagram(message):
     chat_id = message.chat.id
     photo = open('content/img.jpg', 'rb')
     hr_bot.send_photo(chat_id, photo)
-
-
-def process_step(message):
-    chat_id = message.chat.id
-    markup = types.ReplyKeyboardHide(selective=False)
-    hr_bot.send_message(chat_id, message, reply_markup=markup)
-    hr_bot.send_message(chat_id, message.text)
 
 
 # Handle all other messages
