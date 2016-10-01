@@ -3,7 +3,11 @@ import telebot
 import logging
 from bot import hr_bot
 import config
+import time
+import urllib3
 
+
+urllib3.disable_warnings()
 logger = telebot.logger
 telebot.logger.setLevel(logging.INFO)
 
@@ -33,12 +37,17 @@ def getApp():
 # hr_bot.polling(none_stop=False, interval=0, timeout=20)
 
 # Remove webhook, it fails sometimes the set if there is a previous webhook
-# hr_bot.remove_webhook()
+hr_bot.remove_webhook()
+
+print("remove sleep")
+time.sleep(60)
 
 # Set webhook
 hr_bot.set_webhook(url=config.WEBHOOK_URL_BASE + config.WEBHOOK_URL_PATH,
                    certificate=open(config.WEBHOOK_SSL_CERT, 'r'))
 
+print("remove sleep")
+time.sleep(60)
 # Start flask server
 app.run(host=config.WEBHOOK_LISTEN,
         port=config.WEBHOOK_PORT,
