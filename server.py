@@ -1,6 +1,9 @@
 import flask
 import telebot
 import logging
+
+import time
+
 import config
 
 logger = telebot.logger
@@ -46,6 +49,8 @@ def echo_message(message):
 bot.remove_webhook()
 
 # Set webhook
+print("sleep")
+time.sleep(30);
 bot.set_webhook(url=config.WEBHOOK_URL_BASE+config.WEBHOOK_URL_PATH,
                 certificate=open(config.WEBHOOK_SSL_CERT, 'r'))
 
