@@ -3,26 +3,29 @@ import config
 
 hr_bot = telebot.TeleBot(config.BOT_TOKEN)
 
+user = hr_bot.get_me()
 
 # Handle '/start'
 @hr_bot.message_handler(commands=['start'])
 def send_welcome(message):
+    chat_id = message.chat.id
     response_text = """
     Привет, компания fora soft приветствует тебя.\n
     Как мы могли уже заметить, у тебя накопилось много вопросов, не стесняйся, спрашивай.\n
     with <3 Fora soft
     """
-    hr_bot.reply_to(message, response_text)
+    hr_bot.reply_to(chat_id, response_text)
 
 
 # Handle '/help'
 @hr_bot.message_handler(commands=['help'])
 def send_welcome(message):
+    chat_id = message.chat.id
     response_text = """
     /mama mama
     /papa
     """
-    hr_bot.reply_to(message, response_text)
+    hr_bot.reply_to(chat_id, response_text)
 
 
 # Handle all other messages
