@@ -49,9 +49,11 @@ def echo_message(message):
 # Remove webhook, it fails sometimes the set if there is a previous webhook
 bot.remove_webhook()
 
-res = bot.set_webhook(url=config.WEBHOOK_URL_BASE + config.WEBHOOK_URL_PATH,
+time.sleep(3)
+
+bot.set_webhook(url=config.WEBHOOK_URL_BASE + config.WEBHOOK_URL_PATH,
                 certificate=open(config.WEBHOOK_SSL_CERT, 'r'))
-print(res)
+
 # Start flask server
 app.run(host=config.WEBHOOK_LISTEN,
         port=config.WEBHOOK_PORT,
