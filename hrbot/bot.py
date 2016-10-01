@@ -88,10 +88,10 @@ def send_vac(message):
     chat_id = message.chat.id
     markup = types.ReplyKeyboardMarkup()
     diz = types.KeyboardButton('Дизайн')
-    dev = types.KeyboardButton('разработка')
+    dev = types.KeyboardButton('Разработка')
     markup.row(diz)
     markup.row(dev)
-    msg = hr_bot.send_message(chat_id, "Выбери вакансию которая тебя интересует:", reply_markup=markup)
+    msg = hr_bot.reply_to(chat_id, "Выбери вакансию которая тебя интересует:", reply_markup=markup)
     hr_bot.register_next_step_handler(msg, process_step)
 
 
@@ -99,9 +99,9 @@ def process_step(message):
     chat_id = message.chat.id
     markup = types.ReplyKeyboardHide(selective=False)
     response_text = ''
-    if message.text is "Дизайн":
+    if message.text == "Дизайн":
         response_text = "Strong risovat kartinki chtob mi takie AAAAAH VAI VAI VAI AYVAZOVSKY PRYAM!!!!"
-    elif message.text is "Разработка":
+    elif message.text == "Разработка":
         php = types.KeyboardButton('PHP')
         js = types.KeyboardButton('JavaScript')
         markup = types.ReplyKeyboardMarkup()
