@@ -1,6 +1,7 @@
 import telebot
 import config
 from hrbot.message_processor import process_message
+from telebot import types
 
 hr_bot = telebot.TeleBot(config.BOT_TOKEN)
 
@@ -85,9 +86,13 @@ def send_offer(message):
 @hr_bot.message_handler(commands=['vacancies'])
 def send_vac(message):
     chat_id = message.chat.id
-    response_text = """Тут пока ничего нет, но мы тебе обещаем, что для тебя обязательно что-то найдём!!"""
-
-    hr_bot.send_message(chat_id, response_text)
+    markup = types.ReplyKeyboardMarkup()
+    diz = types.KeyboardButton('Дизайн')
+    dev = types.KeyboardButton('разработка')
+    markup.row(diz)
+    markup.row(dev)
+    msg = hr_bot.send_message(chat_id, "Выбери вакансию которая тебя интересует:", reply_markup=markup)
+    hr_bot.register_next_step_handler(msg, process_step)
 
 
 @hr_bot.message_handler(commands=['instagram'])
@@ -105,3 +110,6 @@ def echo_message(message):
     hr_bot.send_message(chat_id, message_text)
 
 
+def process_step(message):
+    chat_id = message.chat.id
+    hr_bot.send_message(chat_id, message.text)
