@@ -52,7 +52,7 @@ bot.remove_webhook()
 # Set webhook
 print("sleep")
 time.sleep(30)
-res = bot.set_webhook(url=config.WEBHOOK_URL_PATH,
+res = bot.set_webhook(url=config.WEBHOOK_URL_BASE + config.WEBHOOK_URL_PATH,
                 certificate=open(config.WEBHOOK_SSL_CERT, 'r'))
 print(res)
 # Start flask server
