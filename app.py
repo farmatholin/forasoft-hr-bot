@@ -26,6 +26,8 @@ def webhook():
         flask.abort(403)
 
 
+hr_bot.polling(none_stop=False, interval=0, timeout=20)
+
 # Remove webhook, it fails sometimes the set if there is a previous webhook
 hr_bot.remove_webhook()
 
