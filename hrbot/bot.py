@@ -16,6 +16,13 @@ def send_welcome(message):
 Официальный сайт - fora-soft.com
 HR портал - hrportal.fora-soft.com\n
 From Fora soft with <3
+
+/start Ну ты понял.....
+/vacancies вакансии
+/help ты и так тут..
+/about_us информация по компании
+/contacts контакты
+/we_offer условия работы
 """
     hr_bot.send_message(chat_id, response_text)
 
@@ -45,15 +52,6 @@ def send_about_us(message):
 \nПроекты, которые мы сделали: http://forasoft.com/portfolio/en/
 Моменты из нашей жизни: https://www.instagram.com/fora_soft
 Последние новости из нашей сферы: https://twitter.com/forasoft
-"""
-
-    hr_bot.send_message(chat_id, response_text)
-    response_text = """/start Ну ты понял.....
-/vacancies вакансии
-/help ты и так тут..
-/about_us информация по компании
-/contacts контакты
-/we_offer условия работы
 """
 
     hr_bot.send_message(chat_id, response_text)
