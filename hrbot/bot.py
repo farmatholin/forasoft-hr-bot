@@ -153,7 +153,8 @@ def echo_message(message):
             or message.text == "Дизайн" \
             or message.text == "Разработка" \
             or message.text == "Как зовут HR" \
-            or message_text == "Генеральный Директор":
+            or message_text == "Генеральный Директор" \
+            or message_text == "":
         pass
     else:
         hr_bot.send_message(chat_id, message_text)
