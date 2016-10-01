@@ -102,16 +102,16 @@ def send_instagram(message):
     hr_bot.send_photo(chat_id, photo)
 
 
+def process_step(message):
+    chat_id = message.chat.id
+    markup = types.ReplyKeyboardHide(selective=False)
+    hr_bot.send_message(chat_id, message, reply_markup=markup)
+    hr_bot.send_message(chat_id, message.text)
+
+
 # Handle all other messages
 @hr_bot.message_handler(func=lambda message: True, content_types=['text'])
 def echo_message(message):
     chat_id = message.chat.id
     message_text = process_message(message.text)
     hr_bot.send_message(chat_id, message_text)
-
-
-def process_step(message):
-    chat_id = message.chat.id
-    markup = types.ReplyKeyboardHide(selective=False)
-    hr_bot.send_message(chat_id, message, reply_markup=markup)
-    hr_bot.send_message(chat_id, message.text)
