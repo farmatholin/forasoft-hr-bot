@@ -48,6 +48,15 @@ def send_about_us(message):
 """
 
     hr_bot.send_message(chat_id, response_text)
+    response_text = """/start Ну ты понял.....
+/vacancies вакансии
+/help ты и так тут..
+/about_us информация по компании
+/contacts контакты
+/we_offer условия работы
+"""
+
+    hr_bot.send_message(chat_id, response_text)
 
 
 # Handle '/help'
