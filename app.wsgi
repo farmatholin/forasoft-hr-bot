@@ -1,4 +1,4 @@
-from app import import getApp
+from server import import getApp
 import config
 
 import sys, os

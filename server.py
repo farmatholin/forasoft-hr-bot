@@ -40,25 +40,15 @@ def send_welcome(message):
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
     bot.reply_to(message, message.text)
+
     # hr_bot.polling(none_stop=False, interval=0, timeout=20)
 
-    # Remove webhook, it fails sometimes the set if there is a previous webhook
 
+    bot.remove_webhook()
 
-inited = False
+    bot.set_webhook(url=config.WEBHOOK_URL_BASE + config.WEBHOOK_URL_PATH,
+                    certificate=open(config.WEBHOOK_SSL_CERT, 'r'))
 
-
-def init(inited):
-    if not inited:
-        bot.remove_webhook()
-
-        bot.set_webhook(url=config.WEBHOOK_URL_BASE + config.WEBHOOK_URL_PATH,
-                        certificate=open(config.WEBHOOK_SSL_CERT, 'r'))
-        return True
-    else:
-        return True
-
-inited = init(inited)
 
 app.run(host=config.WEBHOOK_LISTEN,
         port=config.WEBHOOK_PORT,
