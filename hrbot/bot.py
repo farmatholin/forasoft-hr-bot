@@ -129,7 +129,7 @@ def send_instagram(message):
 def echo_message(message):
     chat_id = message.chat.id
     message_text = process_message(message.text)
-    if message.text == "PHP" or message.text == "JavaScript" or message.text == "Дизайн":
+    if message.text == "PHP" or message.text == "JavaScript" or message.text == "Дизайн" or message.text == "Разработка":
         pass
     else:
         hr_bot.send_message(chat_id, message_text)
