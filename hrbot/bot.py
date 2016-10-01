@@ -91,7 +91,7 @@ def send_vac(message):
     dev = types.KeyboardButton('Разработка')
     markup.row(diz)
     markup.row(dev)
-    msg = hr_bot.reply_to(chat_id, "Выбери вакансию которая тебя интересует:", reply_markup=markup)
+    msg = hr_bot.reply_to(message, "Выбери вакансию которая тебя интересует:", reply_markup=markup)
     hr_bot.register_next_step_handler(msg, process_step)
 
 
