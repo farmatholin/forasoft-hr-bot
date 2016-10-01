@@ -1,10 +1,11 @@
+import logging
+import time
+
 import flask
 import telebot
-import logging
 
-import time
-from bot import hr_bot
 import config
+from hrbot.bot import hr_bot
 
 logger = telebot.logger
 telebot.logger.setLevel(logging.INFO)
