@@ -22,6 +22,7 @@ From Fora soft with <3
 /about_us информация по компании
 /contacts контакты
 /we_offer условия работы
+/instagram фотка из инстаграма
 """
     hr_bot.send_message(chat_id, response_text)
 
@@ -35,6 +36,7 @@ def send_help(message):
 /contacts контакты
 /about_us информация о компании
 /we_offer условия работы
+/instagram фотка из инстаграма
 """
 
     hr_bot.send_message(chat_id, response_text)
@@ -81,11 +83,18 @@ def send_offer(message):
 
 
 @hr_bot.message_handler(commands=['vacancies'])
-def send_offer(message):
+def send_vac(message):
     chat_id = message.chat.id
     response_text = """Тут пока ничего нет, но мы тебе обещаем, что для тебя обязательно что-то найдём!!"""
 
     hr_bot.send_message(chat_id, response_text)
+
+
+@hr_bot.message_handler(commands=['Instagram'])
+def send_instagram(message):
+    chat_id = message.chat.id
+    photo = open('../content/img.jpg', 'rb')
+    hr_bot.send_photo(chat_id, photo)
 
 
 # Handle all other messages
@@ -94,3 +103,5 @@ def echo_message(message):
     chat_id = message.chat.id
     message_text = process_message(message.text)
     hr_bot.send_message(chat_id, message_text)
+
+
