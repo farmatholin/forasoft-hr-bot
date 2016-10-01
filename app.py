@@ -4,10 +4,7 @@ import logging
 from bot import hr_bot
 import config
 import time
-import urllib3
 
-
-urllib3.disable_warnings()
 logger = telebot.logger
 telebot.logger.setLevel(logging.INFO)
 
