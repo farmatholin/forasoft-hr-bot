@@ -9,10 +9,9 @@ user = hr_bot.get_me()
 @hr_bot.message_handler(commands=['start'])
 def send_welcome(message):
     chat_id = message.chat.id
-    response_text = """
-    Привет, компания fora soft приветствует тебя.
-Как мы могли уже заметить, у тебя накопилось много вопросов, не стесняйся, спрашивай.
-with <3 Fora soft
+    response_text = """Привет, компания fora soft приветствует тебя.\n
+Как мы могли уже заметить, у тебя накопилось много вопросов, не стесняйся, спрашивай.\n
+Fora softwith <3
 """
     hr_bot.send_message(chat_id, response_text)
 
