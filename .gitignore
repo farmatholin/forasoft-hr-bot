@@ -136,3 +136,6 @@ ENV/
 .ropeproject
 
 config.py
+
+cert/PRIVATE.key
+cert/PUBLIC.pem

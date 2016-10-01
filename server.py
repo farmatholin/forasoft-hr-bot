@@ -24,7 +24,7 @@ def index():
 @app.route(config.WEBHOOK_URL_PATH, methods=['POST'])
 def webhook():
     if flask.request.headers.get('content-type') == 'application/json':
-        json_string = flask.request.get_data().encode('utf-8')
+        json_string = flask.request.get_data()
         update = telebot.types.Update.de_json(json_string)
         bot.process_new_messages([update.message])
         return ''
@@ -49,9 +49,6 @@ def echo_message(message):
 # Remove webhook, it fails sometimes the set if there is a previous webhook
 bot.remove_webhook()
 
-# Set webhook
-print("sleep")
-time.sleep(30)
 res = bot.set_webhook(url=config.WEBHOOK_URL_BASE + config.WEBHOOK_URL_PATH,
                 certificate=open(config.WEBHOOK_SSL_CERT, 'r'))
 print(res)
