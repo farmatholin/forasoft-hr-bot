@@ -47,6 +47,11 @@ def send_help(message):
 @hr_bot.message_handler(commands=['about_us'])
 def send_about_us(message):
     chat_id = message.chat.id
+    hr = types.KeyboardButton('Как зовут HR')
+    dev = types.KeyboardButton('Генеральный Директор')
+    markup = types.ReplyKeyboardMarkup()
+    markup.row(hr)
+    markup.row(dev)
     response_text = """Мы в Фора Софт дополняем реальность, распознаем объекты на видео, запускаем интернет ТВ,\
 разрабатываем платформы для видеонаблюдения, телемедицины и удаленного обучения. \
 Наша специализация — мультимедиа приложения.
@@ -55,7 +60,8 @@ def send_about_us(message):
 Последние новости из нашей сферы: https://twitter.com/forasoft
 """
 
-    hr_bot.send_message(chat_id, response_text)
+    msg = hr_bot.send_message(chat_id, response_text, reply_markup=markup)
+    hr_bot.register_next_step_handler(msg, process_step)
 
 
 # Handle '/help'
@@ -87,8 +93,6 @@ def send_offer(message):
 def send_vac(message):
     chat_id = message.chat.id
     markup = types.ReplyKeyboardMarkup()
-    kb = types.InlineKeyboardMarkup()
-    kb.add(types.InlineKeyboardButton(text="Дизайн", callback_data="1"))
     diz = types.KeyboardButton('Дизайн')
     dev = types.KeyboardButton('Разработка')
     markup.row(diz)
@@ -115,6 +119,19 @@ def process_step(message):
     if message.text == "PHP" or message.text == "JavaScript":
         markup = types.ReplyKeyboardHide(selective=False)
         response_text = "В Git умеешь, тогда ты с нами!"
+    if message.text == "Как зовут HR":
+        response_text = """Азарова Александра"""
+        hr_bot.send_message(chat_id, response_text, reply_markup=markup)
+        response_text = ""
+        photo = open('content/peoples/alexandra.png', 'rb')
+        hr_bot.send_photo(chat_id, photo)
+    if message.text == "Генеральный Директор":
+        response_text = """Сапунов Николай Олегович"""
+        hr_bot.send_message(chat_id, response_text, reply_markup=markup)
+        response_text = ""
+        photo = open('content/peoples/nikolay.png', 'rb')
+        hr_bot.send_photo(chat_id, photo)
+
     msg = hr_bot.send_message(chat_id, response_text, reply_markup=markup)
     hr_bot.register_next_step_handler(msg, process_step)
 
@@ -131,7 +148,12 @@ def send_instagram(message):
 def echo_message(message):
     chat_id = message.chat.id
     message_text = process_message(message.text)
-    if message.text == "PHP" or message.text == "JavaScript" or message.text == "Дизайн" or message.text == "Разработка":
+    if message.text == "PHP" \
+            or message.text == "JavaScript" \
+            or message.text == "Дизайн" \
+            or message.text == "Разработка" \
+            or message.text == "Как зовут HR" \
+            or message_text == "Генеральный Директор":
         pass
     else:
         hr_bot.send_message(chat_id, message_text)
