@@ -69,7 +69,7 @@ HR отдел: +7 (911) 191-48-63  (с 9:00 до 18:00 по будним дня�
     hr_bot.send_location(chat_id, 59.9581403, 30.3003596)
 
 
-@hr_bot.message_handler(commands=['about_us'])
+@hr_bot.message_handler(commands=['we_offer'])
 def send_offer(message):
     chat_id = message.chat.id
     response_text = """У нас вы получаете:\n
