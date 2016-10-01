@@ -112,4 +112,6 @@ def echo_message(message):
 
 def process_step(message):
     chat_id = message.chat.id
+    markup = types.ReplyKeyboardHide(selective=False)
+    hr_bot.send_message(chat_id, message, reply_markup=markup)
     hr_bot.send_message(chat_id, message.text)
