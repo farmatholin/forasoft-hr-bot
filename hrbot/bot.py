@@ -86,26 +86,16 @@ def send_offer(message):
 @hr_bot.message_handler(commands=['vacancies'])
 def send_vac(message):
     chat_id = message.chat.id
-    #markup = types.ReplyKeyboardMarkup()
+    markup = types.ReplyKeyboardMarkup()
     kb = types.InlineKeyboardMarkup()
     kb.add(types.InlineKeyboardButton(text="Дизайн", callback_data="1"))
-    kb.add(types.InlineKeyboardButton(text="Разработка", callback_data="2"))
-    #diz = types.KeyboardButton('Дизайн')
-   # dev = types.KeyboardButton('Разработка')
-   # markup.row(diz)
-    #markup.row(dev)
-    msg = hr_bot.send_message(chat_id, "Выбери вакансию которая тебя интересует:", reply_markup=kb)
-    #hr_bot.register_next_step_handler(msg, process_step)
+    diz = types.KeyboardButton('Дизайн')
+    dev = types.KeyboardButton('Разработка')
+    markup.row(diz)
+    markup.row(dev)
+    msg = hr_bot.send_message(chat_id, "Выбери вакансию которая тебя интересует:", reply_markup=markup)
+    hr_bot.register_next_step_handler(msg, process_step)
 
-
-@hr_bot.callback_query_handler(func=lambda call: True)
-def callback_inline(call):
-    # Если сообщение из чата с ботом
-    if call.message:
-        if call.data == "1":
-            hr_bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Пыщь")
-        else:
-            hr_bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Ag")
 
 def process_step(message):
     chat_id = message.chat.id
