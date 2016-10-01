@@ -14,7 +14,7 @@ def send_welcome(message):
     Как мы могли уже заметить, у тебя накопилось много вопросов, не стесняйся, спрашивай.\n
     with <3 Fora soft
     """
-    hr_bot.reply_to(chat_id, response_text)
+    hr_bot.send_message(chat_id, response_text)
 
 
 # Handle '/help'
@@ -25,10 +25,11 @@ def send_welcome(message):
     /mama mama
     /papa
     """
-    hr_bot.reply_to(chat_id, response_text)
+    hr_bot.send_message(chat_id, response_text)
 
 
 # Handle all other messages
 @hr_bot.message_handler(func=lambda message: True, content_types=['text'])
 def echo_message(message):
-    hr_bot.reply_to(message, message.text)
+    chat_id = message.chat.id
+    hr_bot.send_message(chat_id, chat_id)
