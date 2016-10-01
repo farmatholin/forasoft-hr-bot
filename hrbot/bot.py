@@ -93,7 +93,7 @@ def send_vac(message):
 @hr_bot.message_handler(commands=['instagram'])
 def send_instagram(message):
     chat_id = message.chat.id
-    photo = open('../content/img.jpg', 'rb')
+    photo = open('content/img.jpg', 'rb')
     hr_bot.send_photo(chat_id, photo)
 
 
