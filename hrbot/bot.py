@@ -91,7 +91,7 @@ def send_vac(message):
     dev = types.KeyboardButton('Разработка')
     markup.row(diz)
     markup.row(dev)
-    msg = hr_bot.reply_to(message, "Выбери вакансию которая тебя интересует:", reply_markup=markup)
+    msg = hr_bot.send_message(message, "Выбери вакансию которая тебя интересует:", reply_markup=markup)
     hr_bot.register_next_step_handler(msg, process_step)
 
 
@@ -110,7 +110,11 @@ def process_step(message):
         response_text = 'Выберите вакансию для получения описания вакансии:'
     else:
         pass
-    hr_bot.send_message(chat_id, response_text, reply_markup=markup)
+    if message.text == "PHP" or message.text == "JavaScript":
+        markup = types.ReplyKeyboardHide(selective=False)
+        response_text = "В Git умеешь, тогда ты с нами!"
+    msg = hr_bot.send_message(chat_id, response_text, reply_markup=markup)
+    hr_bot.register_next_step_handler(msg, process_step)
 
 
 @hr_bot.message_handler(commands=['instagram'])
@@ -125,4 +129,7 @@ def send_instagram(message):
 def echo_message(message):
     chat_id = message.chat.id
     message_text = process_message(message.text)
-    hr_bot.send_message(chat_id, message_text)
+    if message.text == "PHP" or message.text == "JavaScript" or message.text == "Дизайн":
+        pass
+    else:
+        hr_bot.send_message(chat_id, message_text)
