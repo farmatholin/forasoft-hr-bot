@@ -17,9 +17,8 @@ def send_welcome(message):
 HR портал - hrportal.fora-soft.com\n
 From Fora soft with <3
 
-/start Ну ты понял.....
 /vacancies вакансии
-/help команды
+/help список команд
 /about_us информация по компании
 /contacts контакты
 /we_offer условия работы
@@ -31,11 +30,10 @@ From Fora soft with <3
 @hr_bot.message_handler(commands=['help'])
 def send_help(message):
     chat_id = message.chat.id
-    response_text = """/start Ну ты понял.....
-/vacancies вакансии
-/help ты и так тут..
-/about_us информация по компании
+    response_text = """/vacancies открытые вакансии
+/help помощь
 /contacts контакты
+/about_us информация о компании
 /we_offer условия работы
 """
 
