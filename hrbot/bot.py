@@ -19,7 +19,7 @@ From Fora soft with <3
 
 /start Ну ты понял.....
 /vacancies вакансии
-/help ты и так тут..
+/help команды
 /about_us информация по компании
 /contacts контакты
 /we_offer условия работы
