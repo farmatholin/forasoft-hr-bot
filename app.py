@@ -26,14 +26,18 @@ def webhook():
         flask.abort(403)
 
 
-#hr_bot.polling(none_stop=False, interval=0, timeout=20)
+def getApp():
+    return app
+
+
+# hr_bot.polling(none_stop=False, interval=0, timeout=20)
 
 # Remove webhook, it fails sometimes the set if there is a previous webhook
-hr_bot.remove_webhook()
+# hr_bot.remove_webhook()
 
 # Set webhook
 hr_bot.set_webhook(url=config.WEBHOOK_URL_BASE + config.WEBHOOK_URL_PATH,
-                certificate=open(config.WEBHOOK_SSL_CERT, 'r'))
+                   certificate=open(config.WEBHOOK_SSL_CERT, 'r'))
 
 # Start flask server
 app.run(host=config.WEBHOOK_LISTEN,
